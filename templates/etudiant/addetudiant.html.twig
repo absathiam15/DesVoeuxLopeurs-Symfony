@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %} {% block body %}
+ 
+<div class=".align-items-center text-white zone-enretud"> Enregistrer Etudiant</div>
+<div class="form-control card-form w-75 ml-5">
+    {{ form_start(form) }}
+        <div class="form-group form">
+            {{ form_row(form.Matricule) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.Prenom) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.Nom) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.email) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.Telephone, {'attr': {'placeholder':'telephone'} }) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.Date_de_Naissance) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.Type_Etudiant) }}
+            <span class="iconify" id="addInput" data-icon="ant-design:plus-square-filled" data-inline="false" style="color: #A44545;"></span>
+        </div>
+        <div class="form-group">
+            {{ form_row(form.Bourse) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.Chambre) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.Adresse, {'attr': {'placeholder':'adresse'} }) }}
+        </div>
+    
+        <input type="submit" value="Enregistrer"> 
+    {{ form_end(form) }}
+</div>
+
+ {% endblock %}
