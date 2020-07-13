@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Allocution des Chambres Etudiants{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+            <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"  rel="stylesheet">
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
+            <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        {% endblock %}
+    </head>
+    <body>
+            <div class="container-fluid">
+                <nav>
+                <ul class="nav navbar-nav navbar-right">
+                 <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+                    {% if app.user %}
+                    <li ><a class="navbar-brand text-info mr-3 border border-info" href="{{ path('app_logout') }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+                </nav>
+                <h2 class="text-center text-white" >BIENVENUE DANS LA PLATEFORME <br> DE GESTION DES CHAMBRES DES ETUDIANTS</h2>
+                
+                    <div class="row container-fluid nav-bar">   
+                        <nav class="container-fluid navbar navbar-expand-md navbar-light mt-4 bg-white">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="container navbar-nav bg-white">
+                                    <li class="nav-item">
+                                        <a class="navbar-brand text-danger ml-1" href="{{ path('etudiant_create') }}">ENREGISTRER ETUDIANT <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navbar-brand text-danger" href="{{ path('chambre_create') }} ">ENREGISTRER CHAMBRES</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navbar-brand text-danger" href="{{ path('etudiant_index') }}">LISTE ETUDIANTS</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navbar-brand text-danger ml-3" href="{{ path('chambre_index') }}">LISTE CHAMBRES</a>
+                                    </li>
+                                    
+                                </ul>
+                                
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        {% block body %}
+            
+        {% endblock %}
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+            <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="/js/script.js"></script>
+            
+        {% endblock %}
+    </body>
+</html>

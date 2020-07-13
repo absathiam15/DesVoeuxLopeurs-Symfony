@@ -2,56 +2,62 @@
 
 namespace App\Form;
 
-use App\Entity\Etudiant;
+use App\Entity\Bourse;
 use App\Entity\Chambre;
+use App\Entity\Etudiant;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EtudiantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Matricule', null, [
-                'attr'=>[
-                    'readonly'=>true
-                ]
-            ])
-            ->add('Prenom')
-            ->add('Nom')
-            ->add('Adresse', null, [
-                'label'=>false,
-                'required'=>false
-            ])
-            ->add('Telephone') 
-            ->add('Date_de_Naissance', null, [
-                // 'widget'=>'single_text'
-            ])
+            ->add('prenom')
+            ->add('nom')
             ->add('email')
-            ->add('Bourse', ChoiceType::class, [
-                'choices'=>[
-                    'Type de bourse' => '',
-                    'BE' => 'BE',
-                    'DB' => 'DB'
+            ->add('tel')
+            ->add('date_naiss', DateType::class, [
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+            ])
+            ->add('type', ChoiceType::class,[
+                'choices' => [
+                    'BoursierLogé' => 'BoursierLogé',
+                    'BoursierNonLogé' => 'BoursierNonLogé',
+                    'NonBoursier' => 'NonBoursier'
                 ],
-                'label' => false,
-                'required' => false
+                'attr' => ['onChange' => 'typeEtudiant()'],
             ])
-            ->add('Type_Etudiant', ChoiceType::class, [
-                'choices'=>[
-                    'Type d\'etudiant' => '',
-                    'Boursier loge' => 'boursierloge',
-                    'Boursier non loge' => 'boursiernonloge',
-                    'Non boursier' => 'nonboursier'
-                ]
+            ->add('adresse',TextType::class,[
+                'row_attr' => ['id' => 'adresse'],
+                'required' => false,
+                'empty_data' => NULL,
             ])
-            ->add('Chambre', EntityType::class,[
-                'class' => Chambre::class,
-                'choice_label' => 'numchambre',
-                'label' => false
+            ->add('Chambre', EntityType::class, array(
+                'class'=>Chambre::class,
+                'placeholder'=>'Choisir une Chambre',
+                'choice_label'=>function($chambre){
+                    return $chambre->getNumChambre();
+                },
+                'row_attr' => ['id' => 'numChambre'],
+                'required' => false,
+                'empty_data' => NULL,
+
+            ))
+            ->add('bourse',EntityType::class,[
+                'class' => Bourse::class,
+                'choice_label' => 'bourse',
+                'placeholder'=>'Choisir un type de Bourse',
+                'row_attr' => ['id' => 'bourse'],
+                'required' => false,
+                'empty_data' => NULL,
             ])
         ;
     }

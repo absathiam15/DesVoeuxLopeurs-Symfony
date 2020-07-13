@@ -1,0 +1,24 @@
+{% extends 'acceuille.html.twig' %}
+
+{% block title %}Creation Etudiant!{% endblock %}
+
+{% block body %}
+    {% block div %}
+        <div class="container">
+            <div class="justify-content-center d-flex text-white">
+                <h1>Enregistrer Etudiant</h1><br>
+            </div>
+            <div class="container justify-content-center d-flex">
+                    {{ form_start(form) }}
+                    {% if msg %}
+                        <div class="alert alert-danger mt-5">{{ msg }}</div>
+                    {% endif %}
+                    {{ form_widget(form) }}
+                    <input type='submit' value='enrigistrer'/>
+                    {{ form_end(form) }}
+                    
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+

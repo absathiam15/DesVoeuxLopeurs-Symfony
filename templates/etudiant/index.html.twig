@@ -1,35 +1,46 @@
-{% extends 'base.html.twig'%}
+{% extends 'acceuille.html.twig' %}
+
+{% block title %}Liste Des Etudiants{% endblock %}
 
 {% block body %}
-<div class="card card-outline-secondary">
-    <table class="table table-bordered" id="myTable">
-        <thead class="thead-dark">
-            <tr>
-                <th>Matricule</th>
-                <th>Prenom</th>
-                <th>Nom</th>
-                <th>Date de Naissance</th>
-                <th>Telephone</th>
-                <th>Email</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for etudiant in etudiants %}
-            <tr>
-                <td>{{etudiant.Matricule}}</td>
-                <td>{{etudiant.Prenom}}</td>
-                <td>{{etudiant.Nom}}</td>
-                <td>{{etudiant.DatedeNaissance|date('d/m/y')}}</td>
-                <td>{{etudiant.Telephone}}</td>
-                <td>{{etudiant.email}}</td>
-                <td>
-                <a href="{{path('etudiant_update', {'id': etudiant.id}) }}"><span class="iconify" data-icon="bx:bxs-edit" data-inline="false" style="color: #454545;"> </span> </a>
-                    <a href="{{path('etudiant_delete', {'id': etudiant.id}) }}" onclick="return confirm('Voullez-vous Supprimer ce Chambre');"><span class="iconify" data-icon="carbon:delete" data-inline="false" style="color: #454545;"></span></a>
-                </td>     
-            </tr>      
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+<div class="container bg-white">
+    <div class="justify-content-center d-flex">
+        <h1>Liste Des Etudiants</h1>
+    </div>
+    <div class="justify-content-center d-flex text-center">
+        <table class="table table-striped table-bordered" id="table" >
+            <thead>
+                <tr>
+                    <th>Matricule</th>
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Bourse</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for etudiant in etudiants %}
+                    <tr>
+                        <td>{{etudiant.matricule}}</td>
+                        <td>{{etudiant.prenom}}</td>
+                        <td>{{etudiant.nom}}</td>
+                        {% if etudiant.getBourse is not null %}
+                            <td>{{etudiant.getBourse.getBourse}}</td>
+                        {% else %}
+                            <td>Non Boursier</td>
+                        {% endif %}
+
+                        
+                        <td>
+                            <a href=" {{ path('etudiant_update',{'id': etudiant.id}) }} "><span class="glyphicon glyphicon-edit"></span></a>
+                            <button class="btn btn-danger delete-etudiant" id="{{ etudiant.id }}">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+ </div>
 {% endblock %}
