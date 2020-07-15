@@ -20,22 +20,22 @@ class Chambre
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
-    private $Num_Chambre;
+    private $num_chambre;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Num_Batiment;
+    private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=batiment::class, inversedBy="chambres")
      */
-    private $Type;
+    private $num_batiment;
 
     /**
-     * @ORM\OneToMany(targetEntity=Etudiant::class, mappedBy="Chambre")
+     * @ORM\OneToMany(targetEntity=Etudiant::class, mappedBy="chambre")
      */
     private $etudiants;
 
@@ -49,38 +49,38 @@ class Chambre
         return $this->id;
     }
 
-    public function getNumChambre(): ?int
+    public function getNumChambre(): ?string
     {
-        return $this->Num_Chambre;
+        return $this->num_chambre;
     }
 
-    public function setNumChambre(int $Num_Chambre): self
+    public function setNumChambre(string $num_chambre): self
     {
-        $this->Num_Chambre = $Num_Chambre;
-
-        return $this;
-    }
-
-    public function getNumBatiment(): ?string
-    {
-        return $this->Num_Batiment;
-    }
-
-    public function setNumBatiment(string $Num_Batiment): self
-    {
-        $this->Num_Batiment = $Num_Batiment;
+        $this->num_chambre = $num_chambre;
 
         return $this;
     }
 
     public function getType(): ?string
     {
-        return $this->Type;
+        return $this->type;
     }
 
-    public function setType(string $Type): self
+    public function setType(string $type): self
     {
-        $this->Type = $Type;
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getNumBatiment(): ?batiment
+    {
+        return $this->num_batiment;
+    }
+
+    public function setNumBatiment(?batiment $num_batiment): self
+    {
+        $this->num_batiment = $num_batiment;
 
         return $this;
     }
@@ -114,5 +114,21 @@ class Chambre
         }
 
         return $this;
+    }
+    public function NumChambre(ChambreRepository $ChambreRepository){
+        $num = $ChambreRepository->FindAll();
+        $num = $num[count($num)-1]->id+1;
+        if($num < 10){
+            $num = "000".$num;
+        }else{
+            if($num < 100){
+                $num = "00".$num;
+            }else{
+                if($num < 1000){
+                    $num = "0".$num;
+                }
+            }
+        }
+        return $num;
     }
 }

@@ -1,39 +1,14 @@
 body {
-    background-image: url('../img/img-fond.jpeg');
+    background-image: url(../images/img-fond.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
+    padding: 0;
+    margin: 0;
 }
 
-h1 {
-    color: red;
-}
-
-.zone-enretud {
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.zone-title {
-    height: 90px;
-    font-size: 22px;
-    font-weight: bold;
-    background-color: rgba(105, 93, 93, 0.568);
-}
-
-.form {
-    width: 70%;
-    height: 50px;
-    background-color: rgb(36, 138, 50);
-}
-
-.card-form {
-    background-color: rgba(110, 55, 55, 0.425);
-    width: 70%;
-    height: 400px;
-    float: left;
-}
-
-.table {
-    background-color: rgba(110, 55, 55, 0.425);
+.zone-menu {
+    background-color: rgba(253, 252, 252, 0.746);
+    color: #fff;
+    font-size: 20px;
+    margin-top: 0.3%;
 }

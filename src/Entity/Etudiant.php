@@ -20,52 +20,52 @@ class Etudiant
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Matricule;
+    private $matricule;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Prenom;
+    private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Nom;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Adresse;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $Telephone;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Date_de_Naissance;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Bourse;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Type_Etudiant;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="etudiants")
-     */
-    private $Chambre;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $tel;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date_naiss;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=chambre::class, inversedBy="etudiants")
+     */
+    private $chambre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=bourse::class, inversedBy="etudiants")
+     */
+    private $bourse;
 
     public function getId(): ?int
     {
@@ -74,108 +74,36 @@ class Etudiant
 
     public function getMatricule(): ?string
     {
-        return $this->Matricule;
+        return $this->matricule;
     }
 
-    public function setMatricule(string $Matricule): self
+    public function setMatricule(string $matricule): self
     {
-        $this->Matricule = $Matricule;
+        $this->matricule = $matricule;
 
         return $this;
     }
 
     public function getPrenom(): ?string
     {
-        return $this->Prenom;
+        return $this->prenom;
     }
 
-    public function setPrenom(string $Prenom): self
+    public function setPrenom(string $prenom): self
     {
-        $this->Prenom = $Prenom;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
     public function getNom(): ?string
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
-    public function setNom(string $Nom): self
+    public function setNom(string $nom): self
     {
-        $this->Nom = $Nom;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->Adresse;
-    }
-
-    public function setAdresse(?string $Adresse): self
-    {
-        $this->Adresse = $Adresse;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?int
-    {
-        return $this->Telephone;
-    }
-
-    public function setTelephone(int $Telephone): self
-    {
-        $this->Telephone = $Telephone;
-
-        return $this;
-    }
-
-    public function getDateDeNaissance(): ?string
-    {
-        return $this->Date_de_Naissance;
-    }
-
-    public function setDateDeNaissance(string $Date_de_Naissance): self
-    {
-        $this->Date_de_Naissance = $Date_de_Naissance;
-
-        return $this;
-    }
-
-    public function getBourse(): ?string
-    {
-        return $this->Bourse;
-    }
-
-    public function setBourse(?string $Bourse): self
-    {
-        $this->Bourse = $Bourse;
-
-        return $this;
-    }
-
-    public function getTypeEtudiant(): ?string
-    {
-        return $this->Type_Etudiant;
-    }
-
-    public function setTypeEtudiant(string $Type_Etudiant): self
-    {
-        $this->Type_Etudiant = $Type_Etudiant;
-
-        return $this;
-    }
-
-    public function getChambre(): ?Chambre
-    {
-        return $this->Chambre;
-    }
-
-    public function setChambre(?Chambre $Chambre): self
-    {
-        $this->Chambre = $Chambre;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -191,4 +119,79 @@ class Etudiant
 
         return $this;
     }
+
+    public function getTel(): ?int
+    {
+        return $this->tel;
+    }
+
+    public function setTel(int $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getDateNaiss(): ?\DateTimeInterface
+    {
+        return $this->date_naiss;
+    }
+
+    public function setDateNaiss(\DateTimeInterface $date_naiss): self
+    {
+        $this->date_naiss = $date_naiss;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getChambre(): ?chambre
+    {
+        return $this->chambre;
+    }
+
+    public function setChambre(?chambre $chambre): self
+    {
+        $this->chambre = $chambre;
+
+        return $this;
+    }
+
+    public function getBourse(): ?bourse
+    {
+        return $this->bourse;
+    }
+
+    public function setBourse(?bourse $bourse): self
+    {
+        $this->bourse = $bourse;
+
+        return $this;
+    }
+
+    
+
 }

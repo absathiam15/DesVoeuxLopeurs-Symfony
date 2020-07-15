@@ -1,0 +1,18 @@
+{% extends 'acceuille.html.twig' %}
+
+
+{% block title %}Creation Chambre!{% endblock %}
+
+{% block body %}
+    <div class="container ">
+        <div class="justify-content-center d-flex text-white">
+            <h1>Enregistrer Chambre</h1>
+        </div>
+        <div class="container justify-content-center d-flex">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input type='submit' class="btn btn-info" value='enrigistrer'/>
+                {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

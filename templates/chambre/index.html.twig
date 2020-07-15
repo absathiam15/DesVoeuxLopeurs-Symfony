@@ -1,20 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'acceuille.html.twig' %}
 
-{% block title %}Hello ChambreController!{% endblock %}
+
+{% block title %}Liste Des Chambres{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/GestionEtudiants/src/Controller/ChambreController.php'|file_link(0) }}">src/Controller/ChambreController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/GestionEtudiants/templates/chambre/index.html.twig'|file_link(0) }}">templates/chambre/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container bg-white">
+        <div class="justify-content-center d-flex">
+            <h1>Liste Des Chambres</h1>
+        </div>
+        <div class="justify-content-center d-flex text-center">
+            <table class="table table-striped table-bordered" id="tableChambre">
+                <thead>
+                    <tr>
+                        <th>Num Batiment</th>
+                        <th>Num Chambre</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for chambre in chambres %}
+                        <tr>
+                            <td>{{chambre.getNumBatiment.getNumBatiment}}</td>
+                            <td>{{chambre.getNumChambre}}</td>
+                            <td>{{chambre.type}}</td>
+                            <td>
+                                <a href=" {{path ('chambre_update', {'id': chambre.id}) }} "><span class="glyphicon glyphicon-edit"></span></a>
+                                <button class="btn btn-danger chambre_delete"  id="{{ chambre.id }}">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div
 {% endblock %}
+
